@@ -1,3 +1,22 @@
-<p>
-  Dashboard Komponente...
-</p>
+<section>
+  <section class="dashboard-tile">
+    <h2>TypeScript</h2>
+    <ul *ngIf="dashboardData && dashboardData.dataTileOne">
+      <li *ngFor="let item of dashboardData.dataTileOne.items">
+        <div>{{ item }}</div>
+      </li>
+    </ul>
+  </section>
+  <section class="dashboard-tile">
+    <h2>Angular2</h2>
+    <ul *ngIf="dashboardData && dashboardData.dataTileTwo">
+      <li *ngFor="let item of dashboardData.dataTileTwo.items">
+        <div>{{ item }}</div>
+      </li>
+    </ul>
+  </section>
+  <section class="dashboard-tile">
+    <h2>Weather</h2>
+    <div>TODO: combine both arrays</div>
+  </section>
+</section>

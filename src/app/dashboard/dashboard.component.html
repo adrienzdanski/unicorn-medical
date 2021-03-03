@@ -1,22 +1,17 @@
 <section>
-  <section class="dashboard-tile">
+  <app-dashboard-tile>
     <h2>TypeScript</h2>
-    <ul *ngIf="dashboardData && dashboardData.dataTileOne">
-      <li *ngFor="let item of dashboardData.dataTileOne.items">
-        <div>{{ item }}</div>
-      </li>
-    </ul>
-  </section>
-  <section class="dashboard-tile">
+    <app-dashboard-list [items]="dashboardData?.dataTileOne?.items"></app-dashboard-list>
+    <app-loading-indicator></app-loading-indicator>
+  </app-dashboard-tile>
+  <app-dashboard-tile>
     <h2>Angular2</h2>
-    <ul *ngIf="dashboardData && dashboardData.dataTileTwo">
-      <li *ngFor="let item of dashboardData.dataTileTwo.items">
-        <div>{{ item }}</div>
-      </li>
-    </ul>
-  </section>
-  <section class="dashboard-tile">
+    <app-dashboard-list [items]="dashboardData?.dataTileTwo?.items"></app-dashboard-list>
+    <app-loading-indicator></app-loading-indicator>
+  </app-dashboard-tile>
+  <app-dashboard-tile>
     <h2>Weather</h2>
     <div>TODO: combine both arrays</div>
-  </section>
+    <app-loading-indicator></app-loading-indicator>
+  </app-dashboard-tile>
 </section>

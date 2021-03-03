@@ -1,5 +1,4 @@
 .main-content {
-    background: $white-sand;
     position: relative;
     top: $topbar-height;
 
@@ -12,7 +11,7 @@
         height: 100%;
 
         @media screen and (min-width: $screen-sm-min) {
-            padding: 20px 50px 50px 50px;
+            padding: 5px 0;
         }
 
         &::after {
@@ -30,7 +29,7 @@
 
             font-size: 20px;
             color:darken($bluewood, 20%);
-            font-family: 'Lato';
+            font-family: 'Lato', sans-serif;
             letter-spacing: -0.5px;
             padding-bottom: 7px;
             font-weight: 100;

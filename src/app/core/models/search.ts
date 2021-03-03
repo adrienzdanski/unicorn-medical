@@ -7,11 +7,12 @@ export interface ISearchResult {
 
 export interface ISearchResultItem  {
   answer_count: number;
+  accepted_answer_id?: number;
   content_license: string;
   creation_date: number;
   is_answered: boolean;
   last_activity_date: number;
-  last_edit_date: number;
+  last_edit_date?: number;
   link: string;
   owner: IOwner;
   question_id: number;
@@ -19,12 +20,12 @@ export interface ISearchResultItem  {
   tags: Array<string>;
   title: string;
   view_count: number;
-  closed_date: number;
-  closed_reason: string;
+  closed_date?: number;
+  closed_reason?: string;
 }
 
 export interface IOwner {
-  accept_rate: number;
+  accept_rate?: number;
   display_name: string;
   link: string;
   profile_image: string;

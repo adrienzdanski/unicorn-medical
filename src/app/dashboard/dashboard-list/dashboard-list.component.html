@@ -1,0 +1,28 @@
+<section *ngIf="items">
+  <div class="list-item" *ngFor="let item of items" (click)="onClick($event, item)">
+    <div class="list-item-header">
+      <h3 class="title">{{ item.title }}</h3>
+      <img class="avatar" [src]="item.owner.profile_image" alt="avatar"/>
+    </div>
+
+    <div class="list-item-body">
+      <div class="score">
+        <app-icon-label [icon]="'fa-star'" [label]="item.score.toString()"></app-icon-label>
+      </div>
+
+      <div class="answer-count">
+        <app-icon-label [icon]="'fa-bullhorn'" [label]="item.answer_count.toString()"></app-icon-label>
+      </div>
+
+      <div class="view-count">
+        <app-icon-label [icon]="'fa-eye'" [label]="item.view_count.toString()"></app-icon-label>
+      </div>
+    </div>
+
+    <div class="list-item-footer">
+      <span class="tag" *ngFor="let tag of item.tags">
+        {{ tag }}
+      </span>
+    </div>
+  </div>
+</section>

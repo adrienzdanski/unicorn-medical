@@ -10,11 +10,6 @@ export class NavbarComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-  }
-
-  onLogin(event: MouseEvent):void {
-    event.stopPropagation();
-    alert('TODO');
 
   }
 }

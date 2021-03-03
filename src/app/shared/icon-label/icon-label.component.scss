@@ -1,0 +1,18 @@
+.icon-label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: #e30042;
+  opacity: 0.5;
+
+  .icon {
+    margin: 0 10px 0 0;
+  }
+
+  .label {
+    font-size: 25px;
+    font-weight: 800;
+  }
+}
+

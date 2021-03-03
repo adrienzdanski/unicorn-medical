@@ -1,0 +1,16 @@
+:host {
+  display: flex;
+  flex-grow: 1;
+  border-radius: 5px;
+  background: #fff;
+  padding: 20px 25px;
+  margin: 0 5px;
+  box-shadow: 0 2px 4px 0 rgb(227 0 66 / 25%);
+
+  max-width: 33%;
+
+  section {
+    position: relative;
+    width: 100%;
+  }
+}

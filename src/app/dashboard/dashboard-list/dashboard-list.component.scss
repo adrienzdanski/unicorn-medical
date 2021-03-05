@@ -40,6 +40,10 @@ section {
       justify-content: flex-start;
       align-items: center;
 
+      &.weather {
+        justify-content: space-between;
+      }
+
       .tag {
         display: inline-flex;
         flex-direction: row;

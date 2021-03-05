@@ -1,17 +1,28 @@
 <section>
   <app-dashboard-tile>
     <h2>TypeScript</h2>
-    <app-dashboard-list [items]="dashboardData?.dataTileOne?.items"></app-dashboard-list>
+    <app-dashboard-list
+      *ngIf="dashboardData?.dataTileOne?.items"
+      [items]="dashboardData?.dataTileOne?.items"
+    ></app-dashboard-list>
     <app-loading-indicator></app-loading-indicator>
   </app-dashboard-tile>
+
   <app-dashboard-tile>
     <h2>Angular2</h2>
-    <app-dashboard-list [items]="dashboardData?.dataTileTwo?.items"></app-dashboard-list>
+    <app-dashboard-list
+      *ngIf="dashboardData?.dataTileTwo?.items"
+      [items]="dashboardData?.dataTileTwo?.items"
+    ></app-dashboard-list>
     <app-loading-indicator></app-loading-indicator>
   </app-dashboard-tile>
+
   <app-dashboard-tile>
     <h2>Weather</h2>
-    <div>TODO: combine both arrays</div>
+    <app-dashboard-list
+      *ngIf="combinedData"
+      [items]="combinedData"
+    ></app-dashboard-list>
     <app-loading-indicator></app-loading-indicator>
   </app-dashboard-tile>
 </section>

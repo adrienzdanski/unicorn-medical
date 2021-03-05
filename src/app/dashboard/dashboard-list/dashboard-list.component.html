@@ -1,28 +1,118 @@
 <section *ngIf="items">
   <div class="list-item" *ngFor="let item of items" (click)="onClick($event, item)">
-    <div class="list-item-header">
-      <h3 class="title">{{ item.title }}</h3>
-      <img class="avatar" [src]="item.owner.profile_image" alt="avatar"/>
-    </div>
+      <ng-template  *ngIf="item.tempA" [ngTemplateOutlet]="templateWeather" [ngTemplateOutletContext]="{
+         date: item.date,
+         time: item.time,
+         tempA: item.tempA,
+         temp3: item.temp3,
+         humidity: item.humidity,
+         airPressure: item.airPressure,
+         rain: item.rain,
+         wind: item.wind,
+         direction: item.direction,
+         brightness: item.brightness
+      }"
+      ></ng-template>
 
-    <div class="list-item-body">
-      <div class="score">
-        <app-icon-label [icon]="'fa-star'" [label]="item.score.toString()"></app-icon-label>
-      </div>
-
-      <div class="answer-count">
-        <app-icon-label [icon]="'fa-bullhorn'" [label]="item.answer_count.toString()"></app-icon-label>
-      </div>
-
-      <div class="view-count">
-        <app-icon-label [icon]="'fa-eye'" [label]="item.view_count.toString()"></app-icon-label>
-      </div>
-    </div>
-
-    <div class="list-item-footer">
-      <span class="tag" *ngFor="let tag of item.tags">
-        {{ tag }}
-      </span>
-    </div>
+      <ng-template *ngIf="item.owner" [ngTemplateOutlet]="templateStackOverflow" [ngTemplateOutletContext]="{
+         title: item.title,
+         avatar: item.owner.profile_image,
+         score: item.score.toString(),
+         answerCount: item.answer_count.toString(),
+         viewCount: item.view_count.toString(),
+         tags: item.tags
+      }"
+      ></ng-template>
   </div>
 </section>
+
+<!-- List item template for weather data -->
+<ng-template #templateWeather
+             let-date='date'
+             let-time='time'
+             let-tempA='tempA'
+             let-temp3='temp3'
+             let-humidity='humidity'
+             let-airPressure='airPressure'
+             let-rain='rain'
+             let-wind='wind'
+             let-direction='direction'
+             let-brightness='brightness'
+             >
+  <div class="list-item-header">
+    <h3 class="title">Weather forecast for {{ date }} at {{ time }} o'clock.</h3>
+  </div>
+
+  <div class="list-item-body">
+    <div>
+      <app-icon-label [icon]="'fa-thermometer-half'" [label]="tempA"></app-icon-label>
+    </div>
+
+    <div>
+      <app-icon-label [icon]="'fa-thermometer-full'" [label]="temp3"></app-icon-label>
+    </div>
+
+    <div>
+      <app-icon-label [icon]="'fa-tint'" [label]="humidity"></app-icon-label>
+    </div>
+
+    <div>
+      <app-icon-label [icon]="'fa-tachometer'" [label]="airPressure"></app-icon-label>
+    </div>
+  </div>
+
+  <div class="list-item-footer weather">
+    <div>
+      <app-icon-label [icon]="'fa-umbrella'" [label]="rain"></app-icon-label>
+    </div>
+
+    <div>
+      <app-icon-label [icon]="'fa-cloud'" [label]="wind"></app-icon-label>
+    </div>
+
+    <div>
+      <app-icon-label [icon]="'fa-compass'" [label]="direction"></app-icon-label>
+    </div>
+
+    <div>
+      <app-icon-label [icon]="'fa-sun-o'" [label]="brightness"></app-icon-label>
+    </div>
+  </div>
+</ng-template>
+
+<!-- List item template for stackoverflow -->
+<ng-template #templateStackOverflow
+             let-title='title'
+             let-avatar='avatar'
+             let-score='score'
+             let-answerCount='answerCount'
+             let-viewCount='viewCount'
+             let-tags='tags'>
+  <div class="list-item-header">
+    <h3 class="title">{{ title }}</h3>
+    <img class="avatar" *ngIf="avatar" [src]="avatar" alt="avatar"/>
+  </div>
+
+  <div class="list-item-body">
+    <div class="score">
+      <app-icon-label [icon]="'fa-star'" [label]="score"></app-icon-label>
+    </div>
+
+    <div class="answer-count">
+      <app-icon-label [icon]="'fa-bullhorn'" [label]="answerCount"></app-icon-label>
+    </div>
+
+    <div class="view-count">
+      <app-icon-label [icon]="'fa-eye'" [label]="viewCount"></app-icon-label>
+    </div>
+  </div>
+
+  <div class="list-item-footer">
+      <span class="tag" *ngFor="let tag of tags">
+        {{ tag }}
+      </span>
+  </div>
+</ng-template>
+
+
+

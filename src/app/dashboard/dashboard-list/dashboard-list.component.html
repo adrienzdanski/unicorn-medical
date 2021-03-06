@@ -1,6 +1,6 @@
 <section *ngIf="items">
-  <div class="list-item" *ngFor="let item of items" (click)="onClick($event, item)">
-      <ng-template  *ngIf="item.tempA" [ngTemplateOutlet]="templateWeather" [ngTemplateOutletContext]="{
+  <div class="list-item" *ngFor="let item of items">
+    <ng-template *ngIf="item.tempA" [ngTemplateOutlet]="templateWeather" [ngTemplateOutletContext]="{
          date: item.date,
          time: item.time,
          tempA: item.tempA,
@@ -12,17 +12,18 @@
          direction: item.direction,
          brightness: item.brightness
       }"
-      ></ng-template>
+    ></ng-template>
 
-      <ng-template *ngIf="item.owner" [ngTemplateOutlet]="templateStackOverflow" [ngTemplateOutletContext]="{
+    <ng-template *ngIf="item.owner" [ngTemplateOutlet]="templateStackOverflow" [ngTemplateOutletContext]="{
          title: item.title,
          avatar: item.owner.profile_image,
          score: item.score.toString(),
          answerCount: item.answer_count.toString(),
          viewCount: item.view_count.toString(),
-         tags: item.tags
+         tags: item.tags,
+         link: item.link
       }"
-      ></ng-template>
+    ></ng-template>
   </div>
 </section>
 
@@ -38,7 +39,7 @@
              let-wind='wind'
              let-direction='direction'
              let-brightness='brightness'
-             >
+>
   <div class="list-item-header">
     <h3 class="title">Weather forecast for {{ date }} at {{ time }} o'clock.</h3>
   </div>
@@ -87,30 +88,34 @@
              let-score='score'
              let-answerCount='answerCount'
              let-viewCount='viewCount'
-             let-tags='tags'>
-  <div class="list-item-header">
-    <h3 class="title">{{ title }}</h3>
-    <img class="avatar" *ngIf="avatar" [src]="avatar" alt="avatar"/>
-  </div>
-
-  <div class="list-item-body">
-    <div class="score">
-      <app-icon-label [icon]="'fa-star'" [label]="score"></app-icon-label>
+             let-tags='tags'
+             let-link='link'
+>
+  <div class="clickable" (click)="onClick($event, link)">
+    <div class="list-item-header">
+      <h3 class="title">{{ title }}</h3>
+      <img class="avatar" *ngIf="avatar" [src]="avatar" alt="avatar"/>
     </div>
 
-    <div class="answer-count">
-      <app-icon-label [icon]="'fa-bullhorn'" [label]="answerCount"></app-icon-label>
+    <div class="list-item-body">
+      <div class="score">
+        <app-icon-label [icon]="'fa-star'" [label]="score"></app-icon-label>
+      </div>
+
+      <div class="answer-count">
+        <app-icon-label [icon]="'fa-bullhorn'" [label]="answerCount"></app-icon-label>
+      </div>
+
+      <div class="view-count">
+        <app-icon-label [icon]="'fa-eye'" [label]="viewCount"></app-icon-label>
+      </div>
     </div>
 
-    <div class="view-count">
-      <app-icon-label [icon]="'fa-eye'" [label]="viewCount"></app-icon-label>
-    </div>
-  </div>
-
-  <div class="list-item-footer">
+    <div class="list-item-footer">
       <span class="tag" *ngFor="let tag of tags">
         {{ tag }}
       </span>
+    </div>
   </div>
 </ng-template>
 

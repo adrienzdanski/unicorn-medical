@@ -1,8 +1,11 @@
 section {
   .list-item {
-    cursor: pointer;
     padding: 3px;
     border-radius: 5px;
+
+    .clickable {
+      cursor: pointer;
+    }
 
     &:hover {
       transform: scale(1.05);

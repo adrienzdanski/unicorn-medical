@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {ISearchQueryParams, ISearchResult, OrderEnum} from '../models/search';
-import {catchError, map, mergeMap} from 'rxjs/operators';
-import {Observable, combineLatest, of} from 'rxjs';
+import {map, mergeMap} from 'rxjs/operators';
+import {Observable, combineLatest} from 'rxjs';
 import {SearchService} from './search.service';
 import {WeatherService} from './weather.service';
 import {IDashboardResponse} from '../models/dashboard-response';

@@ -12,8 +12,8 @@ export class DashboardListComponent {
 
   constructor() {}
 
-  onClick(event: MouseEvent, item: ISearchResultItem): void {
+  onClick(event: MouseEvent, link: string): void {
     event.stopPropagation();
-    window.open(item.link);
+    window.open(link);
   }
 }

@@ -21,6 +21,15 @@ export class DashboardComponent implements OnInit, OnDestroy {
   constructor(private dashboardService: DashboardService, private loadingService: LoadingService) { }
 
   ngOnInit() {
+    this.setup();
+  }
+
+  ngOnDestroy() {
+    this.notifier$.next();
+    this.notifier$.complete();
+  }
+
+  private setup(): void {
     this.loadingService.startLoading();
     this.dashboardService.loadDashboard().pipe(
       takeUntil(this.notifier$),
@@ -28,23 +37,18 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.loadingService.stopLoading();
       }))
       .subscribe( data => {
-      if (data) {
-        this.dashboardData = data;
+          if (data) {
+            this.dashboardData = data;
 
-        this.combinedData = this.prepareTileThree(
-          this.dashboardData.partialDataTileThree.items,
-          this.dashboardData.partialWeatherDataTileThree
-        );
-      }
-    },
-    error => {
-      console.error(error);
-    });
-  }
-
-  ngOnDestroy() {
-    this.notifier$.next();
-    this.notifier$.complete();
+            this.combinedData = this.prepareTileThree(
+              this.dashboardData.partialDataTileThree.items,
+              this.dashboardData.partialWeatherDataTileThree
+            );
+          }
+        },
+        error => {
+          console.error(error);
+        });
   }
 
   private prepareTileThree(array1: ISearchResultItem[], array2: IWeather[]): (ISearchResultItem | IWeather)[] {

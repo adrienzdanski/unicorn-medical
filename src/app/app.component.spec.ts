@@ -1,21 +1,20 @@
-import { TestBed, async } from '@angular/core/testing';
-
+import {TestBed, waitForAsync} from '@angular/core/testing';
 import { AppComponent } from './app.component';
-import {LayoutModule} from "./core/layout/layout.module";
-import {DashboardComponent} from "./dashboard/dashboard.component";
-import {SearchComponent} from "./search/search.component";
-import {AppRoutingModule} from "./app.routing.module";
-import {APP_BASE_HREF} from "@angular/common";
-import {SearchService} from "./core/services/search.service";
-import {HttpModule} from "@angular/http";
+import {LayoutModule} from './core/layout/layout.module';
+import {DashboardComponent} from './dashboard/dashboard.component';
+import {SearchComponent} from './search/search.component';
+import {AppRoutingModule} from './app.routing.module';
+import {APP_BASE_HREF} from '@angular/common';
+import {SearchService} from './core/services/search.service';
+import {HttpClientModule} from '@angular/common/http';
 
 describe('AppComponent', () => {
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         LayoutModule,
         AppRoutingModule,
-        HttpModule
+        HttpClientModule
       ],
       declarations: [
         AppComponent,
@@ -29,7 +28,7 @@ describe('AppComponent', () => {
     }).compileComponents();
   }));
 
-  it('should create the app', async(() => {
+  it('should create the app', waitForAsync(() => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();

@@ -29,16 +29,16 @@ export class WeatherService {
 
   constructor(private http: HttpClient) {}
 
-  getWeatherData(): Observable<IWeather[]> {
-    return this.http.get('assets/data/weatherdata.json').pipe(map(WeatherService.mapWeatherData));
-  }
-
   getRandomWeatherData(count: number): Observable<IWeather[]> {
     return this.getWeatherData().pipe(
       map( weatherDataArray => {
         const shuffledArray = this.shuffle<IWeather>(weatherDataArray);
         return shuffledArray.slice(0, count);
       }));
+  }
+
+  private getWeatherData(): Observable<IWeather[]> {
+    return this.http.get('assets/data/weatherdata.json').pipe(map(WeatherService.mapWeatherData));
   }
 
   /** Adapted from this stackoverflow answer:

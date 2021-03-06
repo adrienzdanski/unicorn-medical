@@ -6,8 +6,8 @@ import {Component, Input} from '@angular/core';
   styleUrls: ['./icon-label.component.scss']
 })
 export class IconLabelComponent {
-  @Input() icon: string;
-  @Input() label: string;
+  @Input() icon = '';
+  @Input() label = '';
   @Input() size = 'fa-2x';
 
   constructor() {}
